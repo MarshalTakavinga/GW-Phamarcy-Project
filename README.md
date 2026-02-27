@@ -100,7 +100,7 @@ GW-Pharmacy/
 ## Support
 
 For technical issues or questions:
-- Email: marshal.takavinga@gwu.edu
+- Email: mttakavinga@gmail.com
 
 ---
 
