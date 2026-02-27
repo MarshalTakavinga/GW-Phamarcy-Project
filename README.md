@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # GW Pharmacy Patient Portal
 
 A secure, HIPAA-aligned patient web portal for managing prescriptions online.
@@ -149,3 +150,7 @@ For technical issues or questions:
 ---
 
 **Note**: This is a prototype application with sample data. Production deployment requires backend implementation, database integration, and security hardening.
+=======
+# GW-Phamarcy-Project
+MSIT Web development GWU Project
+>>>>>>> 1f302401beb0f6a52b6024f810b60b752a6484b2
