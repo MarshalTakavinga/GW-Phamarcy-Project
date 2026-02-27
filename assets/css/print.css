@@ -1,0 +1,393 @@
+/* Print Styles for GW Pharmacy */
+/* Optimized for printing prescriptions and receipts */
+
+@media print {
+    /* Hide unnecessary elements */
+    header, nav, footer, .navbar, .sidebar, 
+    .no-print, button:not(.print-only), 
+    .btn:not(.print-only), .alert, .modal {
+        display: none !important;
+    }
+
+    /* Reset page margins and colors */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    @page {
+        margin: 0.5in;
+        size: letter portrait;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+        background: #fff;
+    }
+
+    /* Prescription Label Styles */
+    .prescription-label {
+        border: 2px solid #000;
+        padding: 20px;
+        margin-bottom: 20px;
+        page-break-inside: avoid;
+        background: #fff;
+    }
+
+    .prescription-label .label-header {
+        text-align: center;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+    }
+
+    .prescription-label .label-header h3 {
+        font-size: 18pt;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .prescription-label .label-header p {
+        font-size: 10pt;
+        margin: 2px 0;
+    }
+
+    .prescription-label .medication-info {
+        background: #f8f9fa;
+        padding: 15px;
+        border: 1px solid #dee2e6;
+        margin: 15px 0;
+    }
+
+    .prescription-label .medication-info h4 {
+        font-size: 16pt;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .prescription-label .warnings {
+        border: 2px solid #dc3545;
+        padding: 10px;
+        background: #fff3cd;
+    }
+
+    .prescription-label .warnings ul {
+        margin: 5px 0;
+        padding-left: 20px;
+    }
+
+    .prescription-label .label-footer {
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px solid #dee2e6;
+        font-size: 8pt;
+        text-align: center;
+    }
+
+    /* Order Receipt Styles */
+    .order-receipt {
+        border: 1px solid #000;
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+        page-break-inside: avoid;
+        background: #fff;
+    }
+
+    .order-receipt .receipt-header {
+        text-align: center;
+        border-bottom: 2px dashed #000;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .order-receipt .receipt-header h2 {
+        font-size: 20pt;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .order-receipt .receipt-header p {
+        font-size: 10pt;
+        margin: 2px 0;
+    }
+
+    .order-receipt table {
+        width: 100%;
+        margin: 15px 0;
+        border-collapse: collapse;
+    }
+
+    .order-receipt table th,
+    .order-receipt table td {
+        padding: 8px;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .order-receipt table thead th {
+        font-weight: bold;
+        border-bottom: 2px solid #000;
+    }
+
+    .order-receipt table tfoot th,
+    .order-receipt table tfoot td {
+        border-top: 2px solid #000;
+        font-weight: bold;
+    }
+
+    .order-receipt .receipt-footer {
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 2px dashed #000;
+        text-align: center;
+    }
+
+    /* QR Code Styles */
+    .qr-code-container {
+        text-align: center;
+        padding: 10px;
+        page-break-inside: avoid;
+    }
+
+    .qr-code-container img {
+        max-width: 150px;
+        height: auto;
+        border: 2px solid #000;
+        padding: 5px;
+    }
+
+    .qr-code-container .qr-label {
+        font-size: 10pt;
+        margin-top: 5px;
+        font-weight: bold;
+    }
+
+    /* Table Styles for General Use */
+    .table-print {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+    }
+
+    .table-print th,
+    .table-print td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .table-print th {
+        background-color: #f8f9fa !important;
+        font-weight: bold;
+    }
+
+    /* Text Utilities for Print */
+    .print-text-center {
+        text-align: center;
+    }
+
+    .print-text-right {
+        text-align: right;
+    }
+
+    .print-text-bold {
+        font-weight: bold;
+    }
+
+    .print-page-break {
+        page-break-after: always;
+    }
+
+    /* Hide Bootstrap Icons in Print */
+    .bi::before {
+        content: "" !important;
+    }
+
+    /* Links - show URLs */
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 9pt;
+        color: #666;
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    /* Barcode Container */
+    .barcode-container {
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #000;
+        margin: 10px 0;
+    }
+
+    .barcode-container img {
+        max-height: 80px;
+    }
+
+    /* Medication List for Print */
+    .medication-list-print {
+        margin: 20px 0;
+    }
+
+    .medication-list-print .medication-item {
+        border: 1px solid #000;
+        padding: 10px;
+        margin-bottom: 10px;
+        page-break-inside: avoid;
+    }
+
+    .medication-list-print .medication-item h5 {
+        font-size: 14pt;
+        margin-bottom: 5px;
+    }
+
+    /* Order Summary for Print */
+    .order-summary-print {
+        border: 2px solid #000;
+        padding: 15px;
+        margin: 20px 0;
+        page-break-inside: avoid;
+    }
+
+    .order-summary-print .summary-header {
+        font-size: 16pt;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+    }
+
+    /* Insurance Information Print */
+    .insurance-info-print {
+        border: 1px solid #000;
+        padding: 15px;
+        margin: 15px 0;
+        background: #f8f9fa;
+    }
+
+    .insurance-info-print h6 {
+        font-size: 12pt;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    /* Patient Information Print */
+    .patient-info-print {
+        border: 1px solid #000;
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .patient-info-print .info-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+
+    .patient-info-print .info-label {
+        font-weight: bold;
+        width: 40%;
+    }
+
+    .patient-info-print .info-value {
+        width: 60%;
+    }
+
+    /* Remove dark mode in print */
+    [data-theme="dark"] * {
+        background: white !important;
+        color: black !important;
+    }
+
+    /* Ensure good contrast for text */
+    .text-muted {
+        color: #666 !important;
+    }
+
+    .text-success {
+        color: #28a745 !important;
+    }
+
+    .text-danger {
+        color: #dc3545 !important;
+    }
+
+    .text-warning {
+        color: #ffc107 !important;
+    }
+
+    .text-info {
+        color: #17a2b8 !important;
+    }
+
+    /* Page Headers and Footers */
+    .print-header {
+        text-align: center;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    .print-footer {
+        text-align: center;
+        border-top: 2px solid #000;
+        padding-top: 10px;
+        margin-top: 20px;
+        font-size: 9pt;
+    }
+
+    /* Signature Line */
+    .signature-line {
+        border-top: 1px solid #000;
+        margin-top: 50px;
+        padding-top: 5px;
+        width: 60%;
+    }
+
+    .signature-line .label {
+        font-size: 10pt;
+    }
+
+    /* Emergency Contact Print */
+    .emergency-contact-print {
+        border: 2px solid #dc3545;
+        padding: 15px;
+        margin: 20px 0;
+        background: #fff3cd;
+    }
+
+    .emergency-contact-print h6 {
+        color: #dc3545;
+        font-weight: bold;
+        font-size: 12pt;
+    }
+
+    /* Medication Schedule Print */
+    .schedule-print {
+        margin: 20px 0;
+    }
+
+    .schedule-print table {
+        width: 100%;
+        border: 1px solid #000;
+    }
+
+    .schedule-print th {
+        background: #f8f9fa;
+        padding: 10px;
+        border: 1px solid #000;
+    }
+
+    .schedule-print td {
+        padding: 10px;
+        border: 1px solid #000;
+    }
+}

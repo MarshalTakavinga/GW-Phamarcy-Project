@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your profile and preferences">
+    <meta name="theme-color" content="#2c3e50">
+    <title>Profile - GW Pharmacy Portal</title>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="../manifest.json">
+    <link rel="apple-touch-icon" href="../assets/images/icon-192x192.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/accessibility.css">
+    <link rel="stylesheet" href="../assets/css/enhancements.css">
+    <link rel="stylesheet" href="../assets/css/dark-mode.css">
+    <link rel="stylesheet" href="../assets/css/print.css">
+    <style>
+        /* Custom checkbox sizing for notification preferences */
+        #notifications-form .form-check-input {
+            width: 1.1em;
+            height: 1.1em;
+            margin-top: 0.15em;
+        }
+        #notifications-form .form-check-label {
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        #notifications-form .form-check {
+            padding-left: 1.8em;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm py-3" style="background-color: #2c3e50;">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center" href="dashboard.html">
+                <i class="bi bi-hospital fs-4 me-2"></i>
+                <span class="fw-bold">GW Pharmacy</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link px-3 py-2 rounded" href="dashboard.html">
+                            <i class="bi bi-house-door-fill me-2"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link px-3 py-2 rounded" href="prescriptions.html">
+                            <i class="bi bi-prescription2 me-2"></i>Prescriptions
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link px-3 py-2 rounded position-relative" href="cart.html">
+                            <i class="bi bi-cart3 me-2"></i>Cart
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active px-3 py-2 rounded" href="profile.html">
+                            <i class="bi bi-person-circle me-2"></i>Profile
+                        </a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center flex-wrap gap-3">
+                    <div class="user-info d-flex align-items-center">
+                        <i class="bi bi-person-circle fs-5 me-2"></i>
+                        <span class="fw-medium" id="user-name">Loading...</span>
+                    </div>
+                    <button class="btn btn-outline-light btn-sm rounded-pill px-3" id="logout-btn">
+                        <i class="bi bi-box-arrow-right me-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" class="container my-4">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="h3">My Profile</h1>
+                <p class="text-muted">Manage your personal information and preferences</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3 mb-4">
+                <div class="list-group">
+                    <a href="#personal-info" class="list-group-item list-group-item-action active" data-tab="personal-info">
+                        <i class="bi bi-person-circle me-2"></i>Personal Information
+                    </a>
+                    <a href="#insurance" class="list-group-item list-group-item-action" data-tab="insurance">
+                        <i class="bi bi-shield-check me-2"></i>Insurance
+                    </a>
+                    <a href="#notifications" class="list-group-item list-group-item-action" data-tab="notifications">
+                        <i class="bi bi-bell me-2"></i>Notifications
+                    </a>
+                    <a href="#security" class="list-group-item list-group-item-action" data-tab="security">
+                        <i class="bi bi-lock me-2"></i>Security
+                    </a>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="col-lg-9">
+                <!-- Personal Information Tab -->
+                <div class="tab-content active" id="personal-info">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0">Personal Information</h2>
+                        </div>
+                        <div class="card-body">
+                            <form id="personal-info-form">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="first-name" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="first-name" value="John">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="last-name" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="last-name" value="Doe">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" value="patient@gwu.edu" readonly>
+                                    <div class="form-text">Contact support to change your email</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" value="(202) 555-0123">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dob" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control" id="dob" value="1995-06-15" readonly>
+                                    <div class="form-text">Contact support to update your date of birth</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <input type="text" class="form-control mb-2" id="address" placeholder="Street Address" value="2121 I Street NW">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <input type="text" class="form-control" placeholder="City" value="Washington">
+                                        </div>
+                                        <div class="col-md-3 mb-2">
+                                            <input type="text" class="form-control" placeholder="State" value="DC">
+                                        </div>
+                                        <div class="col-md-3 mb-2">
+                                            <input type="text" class="form-control" placeholder="ZIP" value="20052">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insurance Tab -->
+                <div class="tab-content" id="insurance">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0">Insurance Information</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-info">
+                                <i class="bi bi-shield-lock me-2"></i>
+                                <strong>Privacy Notice:</strong> Insurance details are masked for your security.
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h3 class="h6">Primary Insurance</h3>
+                                <div class="border rounded p-3 bg-light">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <strong>Provider:</strong> Aetna Student Health
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <strong>Member ID:</strong> ****-****-5678
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <strong>Group Number:</strong> ****-1234
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <strong>Status:</strong> <span class="badge bg-success">Active</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-sm btn-outline-primary mt-2">
+                                        <i class="bi bi-pencil me-1"></i>Update Insurance
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <h3 class="h6">Add Secondary Insurance</h3>
+                                <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addInsuranceModal">
+                                    <i class="bi bi-plus-circle me-1"></i>Add Insurance
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications Tab -->
+                <div class="tab-content" id="notifications">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0">Notification Preferences</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-muted">Choose how you want to receive updates about your prescriptions</p>
+                            
+                            <form id="notifications-form">
+                                <!-- Email Notifications Section -->
+                                <div class="mb-4 p-4 bg-light rounded-3 border">
+                                    <div class="mb-3">
+                                        <h3 class="h6 mb-1"><i class="bi bi-envelope-fill text-primary me-2"></i>Email Notifications</h3>
+                                        <small class="text-muted">Receive updates via email</small>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="email-enabled" checked>
+                                        <label class="form-check-label fw-semibold" for="email-enabled">
+                                            Enable email notifications
+                                        </label>
+                                    </div>
+                                    <div class="ms-4">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="email-refill" checked>
+                                            <label class="form-check-label" for="email-refill">
+                                                <i class="bi bi-prescription2 text-primary me-2"></i>Refill reminders
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="email-ready" checked>
+                                            <label class="form-check-label" for="email-ready">
+                                                <i class="bi bi-check-circle text-success me-2"></i>Order ready for pickup
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="email-expiring" checked>
+                                            <label class="form-check-label" for="email-expiring">
+                                                <i class="bi bi-exclamation-triangle text-warning me-2"></i>Prescription expiring soon
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="email-promotions">
+                                            <label class="form-check-label" for="email-promotions">
+                                                <i class="bi bi-gift text-info me-2"></i>Promotional emails and health tips
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- SMS Notifications Section -->
+                                <div class="mb-4 p-4 bg-light rounded-3 border">
+                                    <div class="mb-3">
+                                        <h3 class="h6 mb-1"><i class="bi bi-phone-fill text-success me-2"></i>SMS Notifications</h3>
+                                        <small class="text-muted">Receive updates via text message</small>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="sms-enabled" checked>
+                                        <label class="form-check-label fw-semibold" for="sms-enabled">
+                                            Enable SMS notifications
+                                        </label>
+                                    </div>
+                                    <div id="sms-options" class="ms-4">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="sms-refill" checked>
+                                            <label class="form-check-label" for="sms-refill">
+                                                <i class="bi bi-prescription2 text-primary me-2"></i>Refill reminders
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="sms-ready" checked>
+                                            <label class="form-check-label" for="sms-ready">
+                                                <i class="bi bi-check-circle text-success me-2"></i>Order ready for pickup
+                                            </label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="sms-expiring" checked>
+                                            <label class="form-check-label" for="sms-expiring">
+                                                <i class="bi bi-exclamation-triangle text-warning me-2"></i>Prescription expiring soon
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="sms-urgent" checked>
+                                            <label class="form-check-label" for="sms-urgent">
+                                                <i class="bi bi-bell text-danger me-2"></i>Urgent alerts only
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="mb-4 p-3 border rounded-3">
+                                    <h6 class="mb-3"><i class="bi bi-gear-fill me-2"></i>Test & Manage</h6>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="showEmailHistory()">
+                                            <i class="bi bi-envelope-check me-1"></i>Email History
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="testEmailNotification()">
+                                            <i class="bi bi-envelope-at me-1"></i>Test Email
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-success" onclick="showSMSHistory()">
+                                            <i class="bi bi-clock-history me-1"></i>SMS History
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-outline-success" onclick="testSMSNotification()">
+                                            <i class="bi bi-send me-1"></i>Test SMS
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Notification Statistics -->
+                                <div class="p-4 bg-primary bg-opacity-10 rounded-3 border border-primary border-opacity-25">
+                                    <h6 class="mb-3"><i class="bi bi-graph-up me-2"></i>Notification Statistics</h6>
+                                    <div class="row text-center g-3">
+                                        <div class="col-6 col-md-3">
+                                            <div class="p-3 bg-white rounded shadow-sm">
+                                                <div class="text-primary fw-bold fs-4" id="stat-sms-sent">0</div>
+                                                <small class="text-muted">SMS Sent</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-3">
+                                            <div class="p-3 bg-white rounded shadow-sm">
+                                                <div class="text-info fw-bold fs-4" id="stat-emails-sent">0</div>
+                                                <small class="text-muted">Emails Sent</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-3">
+                                            <div class="p-3 bg-white rounded shadow-sm">
+                                                <div class="text-success fw-bold fs-4" id="stat-total-notifications">0</div>
+                                                <small class="text-muted">Total</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-3">
+                                            <div class="p-3 bg-white rounded shadow-sm">
+                                                <div class="text-warning fw-bold fs-4" id="stat-last-check">Never</div>
+                                                <small class="text-muted">Last Check</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary px-4">
+                                        <i class="bi bi-check-circle me-2"></i>Save Preferences
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Tab -->
+                <div class="tab-content" id="security">
+                    <div class="card shadow-sm mb-3">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0">Change Password</h2>
+                        </div>
+                        <div class="card-body">
+                            <form id="password-form">
+                                <div class="mb-3">
+                                    <label for="current-password" class="form-label">Current Password</label>
+                                    <input type="password" class="form-control" id="current-password" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="new-password" class="form-label">New Password</label>
+                                    <input type="password" class="form-control" id="new-password" required>
+                                    <div class="form-text">Minimum 8 characters with uppercase, lowercase, and number</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="confirm-new-password" class="form-label">Confirm New Password</label>
+                                    <input type="password" class="form-control" id="confirm-new-password" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update Password</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-white">
+                            <h2 class="h5 mb-0">Account Activity</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <strong>Last Login:</strong> November 21, 2025 at 2:30 PM
+                            </div>
+                            <div class="mb-3">
+                                <strong>Login Location:</strong> Washington, DC
+                            </div>
+                            <button class="btn btn-outline-danger btn-sm">
+                                <i class="bi bi-box-arrow-right me-1"></i>Sign Out All Devices
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Insurance Modal -->
+    <div class="modal fade" id="addInsuranceModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Insurance Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Insurance Provider</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Member ID</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Group Number</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Add Insurance</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SMS History Modal -->
+    <div class="modal fade" id="smsHistoryModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-chat-dots me-2"></i>SMS Notification History
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="sms-stats" class="row g-3 mb-4">
+                        <div class="col-6 col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="h4 mb-0" id="sms-total">0</div>
+                                <div class="small text-muted">Total Sent</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="h4 mb-0" id="sms-today">0</div>
+                                <div class="small text-muted">Today</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="h4 mb-0" id="sms-week">0</div>
+                                <div class="small text-muted">This Week</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="h4 mb-0" id="sms-delivered">0</div>
+                                <div class="small text-muted">Delivered</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="sms-history-list" class="list-group">
+                        <!-- SMS history will be populated here -->
+                    </div>
+                    
+                    <div id="sms-empty" class="text-center py-5 text-muted" style="display: none;">
+                        <i class="bi bi-inbox display-1"></i>
+                        <p class="mt-3">No SMS messages sent yet</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Email History Modal -->
+    <div class="modal fade" id="emailHistoryModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-envelope-open me-2"></i>Email Notification History
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="email-stats" class="row g-3 mb-4">
+                        <div class="col-6 col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="h4 mb-0" id="email-total">0</div>
+                                <div class="small text-muted">Total Sent</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="h4 mb-0" id="email-today">0</div>
+                                <div class="small text-muted">Today</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="h4 mb-0" id="email-week">0</div>
+                                <div class="small text-muted">This Week</div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="h4 mb-0" id="email-sent">0</div>
+                                <div class="small text-muted">Delivered</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="list-group" id="email-history-list"></div>
+                    
+                    <div id="email-empty" class="text-center py-5 text-muted" style="display: none;">
+                        <i class="bi bi-inbox display-1"></i>
+                        <p class="mt-3">No emails sent yet</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container text-center">
+            <p class="small mb-0">&copy; 2025 GW Pharmacy Portal. HIPAA Compliant.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- EmailJS SDK for real email sending -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    
+    <script src="../assets/data/mock-data.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script src="../assets/js/theme-manager.js"></script>
+    <script src="../assets/js/pwa-manager.js"></script>
+    <script src="../assets/js/voice-assistant.js"></script>
+    <script src="../assets/js/medication-reminders.js"></script>
+    <script src="../assets/js/drug-interactions.js"></script>
+    <script src="../assets/js/order-tracking.js"></script>
+    <script src="../assets/js/insurance-calculator.js"></script>
+    <script src="../assets/js/consultation-service.js"></script>
+    <script src="../assets/js/qr-code-service.js"></script>
+    <script src="../assets/js/twilio-service.js"></script>
+    <script src="../assets/js/email-service.js"></script>
+    <script src="../assets/js/api.js"></script>
+    <script src="../assets/js/notification-automation.js"></script>
+    <script src="../assets/js/ui-enhancements.js"></script>
+    <script src="../assets/js/profile.js"></script>
+    <script>
+        // Authentication disabled for public repository
+        document.addEventListener('DOMContentLoaded', function() {
+            // if (!isAuthenticated()) {
+            //     window.location.href = '../index.html';
+            //     return;
+            // }
+            initProfilePage();
+            checkSMSMode();
+            checkEmailMode();
+        });
+        
+        // Check email service status and mode
+        function checkEmailMode() {
+            console.log('🔍 Checking email mode...');
+            const badge = document.getElementById('email-mode-badge');
+            const description = document.getElementById('email-mode-description');
+            
+            // Check if EmailJS is loaded and configured
+            const emailJSLoaded = typeof emailjs !== 'undefined';
+            const emailJSConfigured = EMAILJS_CONFIG && EMAILJS_CONFIG.enabled;
+            
+            console.log('📧 Email Status Check:', {
+                emailJSLoaded,
+                emailJSConfigured,
+                emailJSExists: typeof emailjs,
+                configExists: typeof EMAILJS_CONFIG
+            });
+            
+            if (emailJSLoaded && emailJSConfigured) {
+                // EmailJS service connected
+                badge.className = 'badge bg-success';
+                badge.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i>Live';
+                description.innerHTML = '✅ Connected to EmailJS - Emails will be sent!';
+                console.log('✅ Email mode: Live via EmailJS');
+            } else {
+                // Simulated mode
+                badge.className = 'badge bg-success';
+                badge.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i>Active';
+                description.innerHTML = '✅ Email notifications enabled for prescription updates and alerts';
+                console.log('ℹ️ Email mode: Simulated');
+            }
+        }
+        
+        // Check SMS server status and mode
+        async function checkSMSMode() {
+            const badge = document.getElementById('sms-mode-badge');
+            const statusText = document.getElementById('sms-status-text');
+            const description = document.getElementById('sms-mode-description');
+            
+            try {
+                const response = await fetch('http://localhost:3000/api/health', { 
+                    method: 'GET',
+                    signal: AbortSignal.timeout(2000) // 2 second timeout
+                });
+                const data = await response.json();
+                
+                if (data.twilioConfigured) {
+                    // Twilio service connected
+                    badge.className = 'badge bg-success';
+                    badge.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i>Live';
+                    statusText.textContent = 'SMS service connected';
+                    description.innerHTML = '✅ Connected to Twilio - Text messages will be sent!';
+                } else {
+                    // Simulation mode
+                    badge.className = 'badge bg-info';
+                    badge.innerHTML = '<i class="bi bi-info-circle-fill me-1"></i>Simulated';
+                    statusText.textContent = 'SMS notifications enabled';
+                    description.innerHTML = '✅ SMS simulation mode active - notifications simulated';
+                }
+            } catch (error) {
+                // Service not available - show active status
+                badge.className = 'badge bg-success';
+                badge.innerHTML = '<i class="bi bi-check-circle-fill me-1"></i>Active';
+                statusText.textContent = 'SMS notifications enabled';
+                description.innerHTML = '✅ Stay informed with real-time prescription updates via text message';
+            }
+        }
+        
+        // Show SMS history modal
+        function showSMSHistory() {
+            const modal = new bootstrap.Modal(document.getElementById('smsHistoryModal'));
+            
+            // Get SMS statistics
+            const stats = twilioService.getSMSStats();
+            document.getElementById('sms-total').textContent = stats.total;
+            document.getElementById('sms-today').textContent = stats.today;
+            document.getElementById('sms-week').textContent = stats.thisWeek;
+            document.getElementById('sms-delivered').textContent = stats.delivered;
+            
+            // Get SMS history
+            const history = twilioService.getSMSHistory(20);
+            const historyList = document.getElementById('sms-history-list');
+            const emptyState = document.getElementById('sms-empty');
+            
+            if (history.length === 0) {
+                historyList.style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                historyList.style.display = 'block';
+                emptyState.style.display = 'none';
+                
+                historyList.innerHTML = history.map(msg => `
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="flex-grow-1">
+                                <div class="mb-1">
+                                    <span class="badge bg-${msg.status === 'delivered' ? 'success' : 'warning'}">
+                                        ${msg.status}
+                                    </span>
+                                </div>
+                                <div class="small">${msg.body}</div>
+                                <div class="small text-muted mt-1">
+                                    <i class="bi bi-phone me-1"></i>${twilioService.maskPhoneNumber(msg.to)}
+                                    <span class="ms-2">
+                                        <i class="bi bi-clock me-1"></i>${new Date(msg.timestamp).toLocaleString()}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            modal.show();
+        }
+        
+        // Test SMS notification
+        async function testSMSNotification() {
+            if (typeof twilioService === 'undefined') {
+                alert('SMS service not loaded');
+                return;
+            }
+            
+            const session = JSON.parse(localStorage.getItem('gwpharmacy_session'));
+            if (!session || !session.user) {
+                alert('User session not found');
+                return;
+            }
+            
+            try {
+                // Send test SMS
+                const result = await twilioService.sendTestMessage(session.user);
+                
+                if (result.success) {
+                    // Update stats after a brief delay to ensure SMS is saved
+                    setTimeout(() => {
+                        updateNotificationStats();
+                    }, 100);
+                    
+                    // Show success toast
+                    const toast = document.createElement('div');
+                    toast.className = 'toast position-fixed top-0 end-0 m-3';
+                    toast.setAttribute('role', 'alert');
+                    toast.style.zIndex = '9999';
+                    toast.innerHTML = `
+                        <div class="toast-header bg-success text-white">
+                            <i class="bi bi-check-circle me-2"></i>
+                            <strong class="me-auto">SMS Sent Successfully</strong>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                        </div>
+                        <div class="toast-body">
+                            Test SMS sent to ${twilioService.maskPhoneNumber(session.user.phone)}!
+                            <br><small class="text-muted">Check the SMS History to view the message.</small>
+                        </div>
+                    `;
+                    document.body.appendChild(toast);
+                    const bsToast = new bootstrap.Toast(toast, { delay: 5000 });
+                    bsToast.show();
+                    toast.addEventListener('hidden.bs.toast', () => toast.remove());
+                } else {
+                    alert('Failed to send SMS: ' + (result.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('SMS test error:', error);
+                alert('Error sending SMS. Check console for details.');
+            }
+        }
+        
+        // Show email history modal
+        function showEmailHistory() {
+            if (typeof emailService === 'undefined') {
+                alert('Email service not loaded');
+                return;
+            }
+            
+            const modal = new bootstrap.Modal(document.getElementById('emailHistoryModal'));
+            
+            // Get email statistics
+            const stats = emailService.getEmailStats();
+            document.getElementById('email-total').textContent = stats.total;
+            document.getElementById('email-today').textContent = stats.today;
+            document.getElementById('email-week').textContent = stats.thisWeek;
+            document.getElementById('email-sent').textContent = stats.sent;
+            
+            // Get email history
+            const history = emailService.getEmailHistory(20);
+            const historyList = document.getElementById('email-history-list');
+            const emptyState = document.getElementById('email-empty');
+            
+            if (history.length === 0) {
+                historyList.style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                historyList.style.display = 'block';
+                emptyState.style.display = 'none';
+                
+                historyList.innerHTML = history.map(email => `
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="flex-grow-1">
+                                <div class="mb-1">
+                                    <span class="badge bg-${email.status === 'sent' ? 'success' : 'warning'}">
+                                        ${email.status}
+                                    </span>
+                                </div>
+                                <h6 class="mb-1">${email.subject}</h6>
+                                <div class="small text-muted mt-1">
+                                    <i class="bi bi-envelope me-1"></i>${email.to}
+                                    <span class="ms-2">
+                                        <i class="bi bi-clock me-1"></i>${new Date(email.timestamp).toLocaleString()}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            modal.show();
+        }
+        
+        // Test email notification
+        async function testEmailNotification() {
+            if (typeof emailService === 'undefined') {
+                alert('Email service not loaded');
+                return;
+            }
+            
+            const session = JSON.parse(localStorage.getItem('gwpharmacy_session'));
+            if (!session || !session.user) {
+                alert('User session not found');
+                return;
+            }
+            
+            try {
+                // Send test email with order confirmation template
+                const testOrder = {
+                    orderNumber: 'TEST-' + Date.now(),
+                    orderDate: new Date().toISOString(),
+                    total: 45.99,
+                    estimatedReady: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
+                    pickupLocation: {
+                        name: 'GW Pharmacy Main Campus',
+                        address: '123 University Blvd, Washington DC 20052',
+                        hours: 'Mon-Fri 9AM-6PM, Sat 10AM-4PM'
+                    },
+                    items: [
+                        {
+                            medicationName: 'Lisinopril 10mg',
+                            dosage: '10mg tablets',
+                            quantity: 30,
+                            copay: 15.00
+                        },
+                        {
+                            medicationName: 'Metformin 500mg',
+                            dosage: '500mg tablets',
+                            quantity: 60,
+                            copay: 30.99
+                        }
+                    ]
+                };
+                
+                const result = await emailService.sendOrderConfirmation(testOrder, session.user);
+                
+                if (result.success) {
+                    // Update stats after a brief delay to ensure email is saved
+                    setTimeout(() => {
+                        updateNotificationStats();
+                    }, 100);
+                    
+                    // Show success toast
+                    const toast = document.createElement('div');
+                    toast.className = 'toast position-fixed top-0 end-0 m-3';
+                    toast.setAttribute('role', 'alert');
+                    toast.style.zIndex = '9999';
+                    toast.innerHTML = `
+                        <div class="toast-header bg-success text-white">
+                            <i class="bi bi-envelope-check me-2"></i>
+                            <strong class="me-auto">Email Sent Successfully</strong>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                        </div>
+                        <div class="toast-body">
+                            Test email sent to ${session.user.email}!
+                            <br><small class="text-muted">Check the Email History to view the message.</small>
+                        </div>
+                    `;
+                    document.body.appendChild(toast);
+                    const bsToast = new bootstrap.Toast(toast, { delay: 5000 });
+                    bsToast.show();
+                    toast.addEventListener('hidden.bs.toast', () => toast.remove());
+                } else {
+                    alert('Failed to send email: ' + (result.error || 'Unknown error'));
+                }
+            } catch (error) {
+                console.error('Email test error:', error);
+                alert('Error sending email. Check console for details.');
+            }
+        }
+        
+        // Update notification statistics
+        function updateNotificationStats() {
+            console.log('📊 Updating notification statistics...');
+            
+            // Update SMS stats
+            if (typeof twilioService !== 'undefined') {
+                const smsStats = twilioService.getSMSStats();
+                const element = document.getElementById('stat-sms-sent');
+                if (element) {
+                    element.textContent = smsStats.total;
+                    console.log('SMS stats updated:', smsStats.total);
+                }
+            } else {
+                console.warn('twilioService not loaded');
+            }
+            
+            // Update email stats
+            if (typeof emailService !== 'undefined') {
+                const emailStats = emailService.getEmailStats();
+                const element = document.getElementById('stat-emails-sent');
+                if (element) {
+                    element.textContent = emailStats.total;
+                    console.log('Email stats updated:', emailStats.total);
+                }
+            } else {
+                console.warn('emailService not loaded');
+            }
+            
+            // Update automation stats
+            if (typeof notificationAutomation !== 'undefined') {
+                const autoStats = notificationAutomation.getStats();
+                const totalNotifications = autoStats.total;
+                const lastCheck = autoStats.lastCheck;
+                
+                const totalElement = document.getElementById('stat-total-notifications');
+                if (totalElement) {
+                    totalElement.textContent = totalNotifications;
+                }
+                
+                // Format last check time
+                const lastCheckElement = document.getElementById('stat-last-check');
+                if (lastCheckElement) {
+                    if (lastCheck && lastCheck !== 'Never') {
+                        const checkDate = new Date(lastCheck);
+                        const now = new Date();
+                        const diff = Math.floor((now - checkDate) / (1000 * 60)); // minutes
+                        
+                        if (diff < 60) {
+                            lastCheckElement.textContent = diff + 'm ago';
+                        } else if (diff < 1440) {
+                            lastCheckElement.textContent = Math.floor(diff / 60) + 'h ago';
+                        } else {
+                            lastCheckElement.textContent = Math.floor(diff / 1440) + 'd ago';
+                        }
+                    } else {
+                        lastCheckElement.textContent = 'Never';
+                    }
+                }
+            } else {
+                console.warn('notificationAutomation not loaded');
+            }
+            
+            console.log('✅ Stats update complete');
+        }
+        
+        // Load stats on page load
+        setTimeout(updateNotificationStats, 500);
+    </script>
+</body>
+</html>

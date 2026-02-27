@@ -1,0 +1,498 @@
+/* Dark Mode Styles for GW Pharmacy Portal */
+
+/* Dark Mode Color Palette */
+:root[data-theme="dark"] {
+    --primary-color: #4d94ff;
+    --secondary-color: #9ca3af;
+    --success-color: #10b981;
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --info-color: #06b6d4;
+    
+    --bg-color: #111827;
+    --bg-secondary: #1f2937;
+    --bg-tertiary: #374151;
+    
+    --text-color: #f3f4f6;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    
+    --border-color: #374151;
+    --shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* Global Dark Mode Styles */
+[data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Navigation */
+[data-theme="dark"] .navbar {
+    background-color: var(--bg-secondary) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .navbar-dark .navbar-brand,
+[data-theme="dark"] .navbar-brand,
+[data-theme="dark"] .nav-link {
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link:focus {
+    color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .nav-link.active {
+    background-color: rgba(77, 148, 255, 0.2) !important;
+    color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .navbar-toggler {
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+[data-theme="dark"] .dropdown-menu {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .dropdown-item {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+    background-color: var(--bg-secondary);
+    color: var(--primary-color);
+}
+
+/* Cards */
+[data-theme="dark"] .card {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .card.bg-primary {
+    background-color: #1e40af !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .card-header {
+    background-color: var(--bg-tertiary);
+    border-bottom-color: var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .card-footer {
+    background-color: var(--bg-tertiary);
+    border-top-color: var(--border-color);
+}
+
+[data-theme="dark"] .card-body {
+    color: var(--text-color);
+}
+
+/* Prescription Cards */
+[data-theme="dark"] .prescription-card {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .prescription-card:hover {
+    box-shadow: 0 0.5rem 1rem var(--shadow) !important;
+}
+
+[data-theme="dark"] .prescription-instructions {
+    background-color: var(--bg-tertiary);
+    border-left-color: var(--primary-color);
+}
+
+/* Forms */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+    background-color: var(--bg-tertiary);
+    border-color: var(--primary-color);
+    color: var(--text-color);
+    box-shadow: 0 0 0 0.25rem rgba(77, 148, 255, 0.25);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .form-label {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .form-text {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .input-group-text {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+/* Buttons */
+[data-theme="dark"] .btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+[data-theme="dark"] .btn-outline-secondary {
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .btn-outline-secondary:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .btn-light {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+/* Tables */
+[data-theme="dark"] .table {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .table thead th {
+    border-bottom-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .table tbody tr {
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .table tbody tr:hover {
+    background-color: var(--bg-tertiary);
+}
+
+[data-theme="dark"] .table-responsive {
+    background-color: var(--bg-secondary);
+}
+
+/* Alerts */
+[data-theme="dark"] .alert-success {
+    background-color: #065f46;
+    border-color: #047857;
+    color: #d1fae5;
+}
+
+[data-theme="dark"] .alert-danger {
+    background-color: #7f1d1d;
+    border-color: #991b1b;
+    color: #fecaca;
+}
+
+[data-theme="dark"] .alert-warning {
+    background-color: #78350f;
+    border-color: #92400e;
+    color: #fde68a;
+}
+
+[data-theme="dark"] .alert-info {
+    background-color: #164e63;
+    border-color: #155e75;
+    color: #cffafe;
+}
+
+/* Badges */
+[data-theme="dark"] .badge {
+    filter: brightness(0.9);
+}
+
+/* Modals */
+[data-theme="dark"] .modal-content {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .modal-header {
+    border-bottom-color: var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .modal-footer {
+    border-top-color: var(--border-color);
+}
+
+[data-theme="dark"] .modal-title {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .btn-close {
+    filter: invert(1);
+}
+
+/* Footer */
+[data-theme="dark"] footer.bg-dark {
+    background-color: var(--bg-secondary) !important;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Lists */
+[data-theme="dark"] .list-group-item {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .list-group-item:hover {
+    background-color: var(--bg-tertiary);
+}
+
+/* Backgrounds */
+[data-theme="dark"] .bg-light {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .bg-white {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-color);
+}
+
+/* Text Colors */
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .text-dark {
+    color: var(--text-color) !important;
+}
+
+/* Borders */
+[data-theme="dark"] .border {
+    border-color: var(--border-color) !important;
+}
+
+/* Stats Cards */
+[data-theme="dark"] .stats-card {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+/* Notification Items */
+[data-theme="dark"] .notification-item {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .notification-item:hover {
+    background-color: var(--bg-tertiary);
+}
+
+/* Progress Bars */
+[data-theme="dark"] .progress {
+    background-color: var(--bg-tertiary);
+}
+
+/* Checkout Progress */
+[data-theme="dark"] .checkout-progress::before {
+    background-color: var(--border-color);
+}
+
+[data-theme="dark"] .step-number {
+    background-color: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+/* Scrollbar */
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--bg-tertiary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--border-color);
+}
+
+/* Hero Section (Landing Page) */
+[data-theme="dark"] .hero-section {
+    background-color: var(--bg-secondary);
+}
+
+/* Feature Items */
+[data-theme="dark"] .feature-item i {
+    color: var(--primary-color);
+}
+
+/* Detail Rows */
+[data-theme="dark"] .detail-row {
+    border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .detail-label {
+    color: var(--text-muted);
+}
+
+/* Price Display */
+[data-theme="dark"] .price-info {
+    background-color: var(--bg-tertiary);
+}
+
+/* Timeline */
+[data-theme="dark"] .timeline-item::before {
+    background-color: var(--border-color);
+}
+
+/* Tabs */
+[data-theme="dark"] .nav-pills .nav-link {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .nav-pills .nav-link.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Selection */
+[data-theme="dark"] ::selection {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Smooth Transition for Theme Switch */
+*,
+*::before,
+*::after {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* Disable transitions for initial page load */
+.no-transition * {
+    transition: none !important;
+}
+
+/* Theme Toggle Button Styles */
+#theme-toggle-btn {
+    transition: all 0.3s ease;
+}
+
+#theme-toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+#theme-toggle-btn .theme-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle-btn:hover .theme-icon {
+    transform: rotate(20deg);
+}
+
+/* Loading Skeleton Dark Mode */
+[data-theme="dark"] .skeleton {
+    background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-secondary) 50%, var(--bg-tertiary) 75%);
+}
+
+/* Specific Component Fixes */
+[data-theme="dark"] .was-validated .form-control:valid {
+    border-color: var(--success-color);
+}
+
+[data-theme="dark"] .was-validated .form-control:invalid {
+    border-color: var(--danger-color);
+}
+
+/* Print Styles for Dark Mode */
+@media print {
+    [data-theme="dark"] {
+        background-color: white !important;
+        color: black !important;
+    }
+    
+    [data-theme="dark"] .card,
+    [data-theme="dark"] .modal-content {
+        background-color: white !important;
+        color: black !important;
+        border-color: #dee2e6 !important;
+    }
+}
+
+/* Floating Action Buttons */
+[data-theme="dark"] .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    background-color: #3d7fd9;
+    border-color: #3d7fd9;
+}
+
+[data-theme="dark"] #voice-fab {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #3d7fd9 100%);
+    box-shadow: 0 4px 12px rgba(77, 148, 255, 0.4);
+}
+
+[data-theme="dark"] #voice-fab:hover {
+    box-shadow: 0 6px 20px rgba(77, 148, 255, 0.6);
+}
+
+/* Voice Listening Popup */
+[data-theme="dark"] .voice-listening-popup {
+    background: linear-gradient(135deg, #4d94ff 0%, #3d7fd9 100%);
+}
+
+/* Cart Item */
+[data-theme="dark"] .cart-item {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .cart-item:hover {
+    background-color: var(--bg-tertiary);
+}
+
+/* Order Summary */
+[data-theme="dark"] .order-summary {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+/* Stats Cards */
+[data-theme="dark"] .stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(77, 148, 255, 0.3);
+}
+
+/* Header on Landing Page */
+[data-theme="dark"] header.bg-primary {
+    background-color: #1e40af !important;
+}
+
+/* Footer */
+[data-theme="dark"] footer {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-color);
+}

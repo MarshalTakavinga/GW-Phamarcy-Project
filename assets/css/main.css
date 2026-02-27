@@ -1,0 +1,410 @@
+/* Main Stylesheet for GW Pharmacy Portal */
+
+:root {
+    /* Professional Industrial Color Palette */
+    --primary-color: #2c3e50;        /* Deep slate blue */
+    --primary-light: #34495e;        /* Lighter slate */
+    --primary-dark: #1a252f;         /* Very dark slate */
+    --secondary-color: #7f8c8d;      /* Neutral gray */
+    --success-color: #27ae60;         /* Professional green */
+    --danger-color: #e74c3c;          /* Alert red */
+    --warning-color: #f39c12;         /* Warning amber */
+    --info-color: #3498db;            /* Professional blue */
+    --light-color: #ecf0f1;           /* Light gray */
+    --dark-color: #2c3e50;            /* Dark slate */
+    
+    --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --border-radius: 0.375rem;
+    --transition-speed: 0.3s;
+}
+
+/* Global Styles */
+body {
+    font-family: var(--font-family-base);
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: #f5f6f7;
+}
+
+/* Skip Link for Accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--dark-color);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 9999;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Prescription Cards */
+.prescription-card {
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    border: 1px solid #e0e0e0;
+}
+
+.prescription-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+}
+
+.prescription-details {
+    font-size: 0.9rem;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.detail-value {
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.prescription-instructions {
+    background-color: #f5f6f7;
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary-color);
+}
+
+/* Feature Items on Landing Page */
+.feature-item {
+    display: flex;
+    align-items: start;
+}
+
+/* Cart Items */
+.cart-item {
+    transition: background-color var(--transition-speed);
+    border: 1px solid #e0e0e0;
+}
+
+.cart-item:hover {
+    background-color: #f5f6f7;
+}
+
+.price-info {
+    padding: 0.5rem;
+}
+
+/* Checkout Progress */
+.checkout-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    position: relative;
+}
+
+.checkout-progress::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #dee2e6;
+    z-index: 0;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #dee2e6;
+    color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    transition: all var(--transition-speed);
+}
+
+.progress-step.active .step-number {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.step-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+.progress-step.active .step-label {
+    color: var(--primary-color);
+}
+
+/* Profile Tabs */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Buttons */
+.btn {
+    transition: all var(--transition-speed);
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+.card-header {
+    border-bottom: 2px solid #f0f0f0;
+    font-weight: 600;
+}
+
+/* Forms */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+.was-validated .form-control:valid,
+.was-validated .form-select:valid {
+    border-color: var(--success-color);
+}
+
+.was-validated .form-control:invalid,
+.was-validated .form-select:invalid {
+    border-color: var(--danger-color);
+}
+
+/* Alerts */
+.alert {
+    border-radius: var(--border-radius);
+    border-left-width: 4px;
+}
+
+/* Loading Skeleton */
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Navbar */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.navbar-nav .nav-link {
+    transition: color var(--transition-speed);
+    position: relative;
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: all var(--transition-speed);
+    transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link.active::after,
+.navbar-nav .nav-link:hover::after {
+    width: 80%;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+}
+
+/* Responsive Tables */
+.table-responsive {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: background-color var(--transition-speed);
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Badges */
+.badge {
+    font-weight: 600;
+    padding: 0.35em 0.65em;
+}
+
+/* Modals */
+.modal-content {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Pagination */
+.pagination .page-link {
+    border-radius: var(--border-radius);
+    margin: 0 2px;
+    transition: all var(--transition-speed);
+}
+
+.pagination .page-link:hover {
+    transform: translateY(-2px);
+}
+
+/* Tooltips */
+[data-bs-toggle="tooltip"] {
+    cursor: help;
+}
+
+/* Utilities */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.text-decoration-line-through {
+    text-decoration: line-through;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .checkout-progress {
+        padding: 1rem 0;
+    }
+    
+    .step-label {
+        font-size: 0.75rem;
+    }
+    
+    .step-number {
+        width: 35px;
+        height: 35px;
+        font-size: 0.875rem;
+    }
+    
+    .prescription-card {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .step-label {
+        display: none;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .footer,
+    .btn,
+    .no-print {
+        display: none !important;
+    }
+    
+    .card {
+        border: 1px solid #dee2e6 !important;
+        page-break-inside: avoid;
+    }
+}
+
+/* Dark Mode Support (Optional Enhancement) */
+@media (prefers-color-scheme: dark) {
+    /* Dark mode styles would go here if implementing */
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus Visible for Better Accessibility */
+*:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
